@@ -23,6 +23,20 @@ app.use(bodyParser.json());
 // alse the content-type of application/x-www-form-urlencoded for the url
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const db = require("./app/models");
+db.mongoose
+  .connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Connected to the database!");
+  })
+  .catch(err => {
+    console.log("Cannot connect to the database!", err);
+    process.exit();
+  });
+
 // testing the api with a get request
 app.get("/", (req, res) => {
   res.json({ message: "Hello World! - Eliezer" });
