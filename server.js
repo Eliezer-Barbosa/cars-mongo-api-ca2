@@ -42,6 +42,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Hello World! - Eliezer" });
 });
 
+require("./app/routes/car.routes")(app);
+
 // this server will run on port 8080
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
