@@ -1,3 +1,3 @@
 module.exports = {
-    url: "mongodb://localhost:27017/cars-ca2_db"
+    url: process.env.DB_URL_PROD
   };

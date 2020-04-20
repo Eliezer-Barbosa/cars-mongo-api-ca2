@@ -8,11 +8,14 @@ const bodyParser = require("body-parser");
 // the request coming from localhost and heroku
 const cors = require("cors");
 
+// dotenv
+require('dotenv').config()
+
 const app = express();
 
 var corsOptions = {
   // this will be the port where the angular app will run
-  origin: "http://localhost:8081"
+  origin: process.env.ORIGIN_CLIENT_ALLOWED
 };
 
 app.use(cors(corsOptions));
@@ -39,7 +42,7 @@ db.mongoose
 
 // testing the api with a get request
 app.get("/", (req, res) => {
-  res.json({ message: "Hello World! - Eliezer" });
+  res.json({ message: "Hello World! - " + process.env.MY_NAME });
 });
 
 require("./app/routes/car.routes")(app);
@@ -47,5 +50,5 @@ require("./app/routes/car.routes")(app);
 // this server will run on port 8080
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+  console.log(`${process.env.MY_NAME}, Server is running on port ${PORT}.`);
 });
