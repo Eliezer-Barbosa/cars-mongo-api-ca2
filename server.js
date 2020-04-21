@@ -15,7 +15,7 @@ const app = express();
 
 var corsOptions = {
   // this will be the port where the angular app will run
-  origin: process.env.ORIGIN_CLIENT_ALLOWED
+  origin: "https://eliezer-meanstack-ui.herokuapp.com"
 };
 
 app.use(cors(corsOptions));
