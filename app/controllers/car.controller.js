@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a car
+  // Create a car object
   const car = new Car({
     name: req.body.name,
     make: req.body.make,
