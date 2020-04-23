@@ -3,9 +3,9 @@ const Car = db.cars;
 
 // Create and Save a new car
 exports.create = (req, res) => {
-  // Validate request if the user try to add a car without a name
-  if (!req.body.name) {
-    res.status(400).send({ message: "Content can not be empty!" });
+  // Validate request if the user try to add a car with fields empty
+  if (!req.body.name || !req.body.price) {
+    res.status(400).send({ message: "Car name and price has to be filled!" });
     return;
   }
 
@@ -13,6 +13,9 @@ exports.create = (req, res) => {
   const car = new Car({
     name: req.body.name,
     make: req.body.make,
+    year: req.body.year,
+    color: req.body.color,
+    price: req.body.price,
     available: req.body.available ? req.body.available : false
   });
 
@@ -129,7 +132,7 @@ exports.deleteAll = (req, res) => {
 };
 
 // Find all available cars
-exports.findAllPublished = (req, res) => {
+exports.findAllAvailable = (req, res) => {
     Car.find({ published: true })
     .then(data => {
       res.send(data);
